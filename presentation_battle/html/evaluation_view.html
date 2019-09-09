@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    　<title>グラフ</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+                     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB9GVrnQet4LVhIsc3SDlbruGovKahM85o",
+            authDomain: "prebat-f4541.firebaseapp.com",
+            databaseURL: "https://prebat-f4541.firebaseio.com",
+            projectId: "prebat-f4541",
+            storageBucket: "",
+            messagingSenderId: "534352448399",
+            appId: "1:534352448399:web:57bfc54295320f86ca99fa"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+
+<body>
+    <center>
+        <font size="+3">評価画面</font>
+    </center><br>
+
+    <center>
+        <font size="+3">
+            合計いいね数
+            <div id="score"></div>
+        </font>
+    </center><br>
+
+    <canvas id="myRaderChart"></canvas>
+    <!-- CDN -->
+    　
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    ​
+    <script>
+
+    </script>
+    <style>
+        .btn-circle-flat {
+            display: inline-block;
+            text-decoration: none;
+            background: #87befd;
+            color: #FFF;
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            transition: .4s;
+        }
+
+        ​ .btn-circle-flat:hover {
+            background: #668ad8;
+        }
+    </style>​
+    ​
+    <center>
+        <input href="#" class="btn-circle-flat" onclick="retop()" value="トップページ">
+    </center>
+    ​
+    <script src="../js/graph.js"></script>
+</body>
+
+</html>

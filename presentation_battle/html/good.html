@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>good</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/good_style.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB9GVrnQet4LVhIsc3SDlbruGovKahM85o",
+            authDomain: "prebat-f4541.firebaseapp.com",
+            databaseURL: "https://prebat-f4541.firebaseio.com",
+            projectId: "prebat-f4541",
+            storageBucket: "",
+            messagingSenderId: "534352448399",
+            appId: "1:534352448399:web:57bfc54295320f86ca99fa"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+
+<body>
+    <img id="good_button" src="../image/good_before.jpg" alt="グッドボタン">
+    <style>
+        .btn-circle-flat {
+            display: inline-block;
+            text-decoration: none;
+            background: #87befd;
+            color: #FFF;
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            transition: .4s;
+        }
+
+        ​ .btn-circle-flat:hover {
+            background: #668ad8;
+        }
+    </style>​
+    <center>
+        <input href="#" class="btn-circle-flat" id="evaluation_button" onclick="location.href='../html/evaluation.html'"
+            value="最終評価">
+    </center>
+    <script src="../js/good_count.js"></script>
+</body>
+
+</html>

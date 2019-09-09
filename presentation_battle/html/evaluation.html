@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>評価</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+                         https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB9GVrnQet4LVhIsc3SDlbruGovKahM85o",
+            authDomain: "prebat-f4541.firebaseapp.com",
+            databaseURL: "https://prebat-f4541.firebaseio.com",
+            projectId: "prebat-f4541",
+            storageBucket: "",
+            messagingSenderId: "534352448399",
+            appId: "1:534352448399:web:57bfc54295320f86ca99fa"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+
+<body>
+    <center>
+        <font size="+3">評価画面</font>
+    </center><br>
+    ​
+    <form name="radioB">
+        <center>
+            <font size="+2">
+                論理性<br>
+            </font>
+            <input type="radio" name="Q1">1
+            <input type="radio" name="Q1">2
+            <input type="radio" name="Q1">3
+            <input type="radio" name="Q1">4
+            <input type="radio" name="Q1">5
+            <br>
+            <font size="+2">
+                話の面白さ<br>
+            </font>
+            <input type="radio" name="Q2">1
+            <input type="radio" name="Q2">2
+            <input type="radio" name="Q2">3
+            <input type="radio" name="Q2">4
+            <input type="radio" name="Q2">5
+            <br>
+            <font size="+2">
+                自信<br>
+            </font>
+            <input type="radio" name="Q3">1
+            <input type="radio" name="Q3">2
+            <input type="radio" name="Q3">3
+            <input type="radio" name="Q3">4
+            <input type="radio" name="Q3">5
+            <br>
+            <font size="+2">
+                アドリブ力<br>
+            </font>
+            <input type="radio" name="Q4">1
+            <input type="radio" name="Q4">2
+            <input type="radio" name="Q4">3
+            <input type="radio" name="Q4">4
+            <input type="radio" name="Q4">5
+            <br>
+            <style>
+                .btn-square-shadow {
+                    display: inline-block;
+                    padding: 0.5em 1em;
+                    text-decoration: none;
+                    background: #668ad8;
+                    /*ボタン色*/
+                    color: #FFF;
+                    border-bottom: solid 4px #627295;
+                    border-radius: 3px;
+                }
+
+                .btn-square-shadow:active {
+                    /*ボタンを押したとき*/
+                    -webkit-transform: translateY(4px);
+                    transform: translateY(4px);
+                    /*下に動く*/
+                    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+                    /*影を小さく*/
+                    border-bottom: none;
+                }
+            </style>​
+            ​
+            <center>
+                <a href="#" class="btn-square-shadow" onclick="point()">入力</a>
+            </center><br>
+            </font>
+        </center>
+    </form>
+    ​
+    ​
+    <canvas id="myRaderChart"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <script>
+        const database = firebase.database();
+        function point() {
+
+            var ten = 0; //点を入れる変数
+
+            //点を配列に入れる
+            var Ans1 = new Array(0, 5, 10, 15);
+            var Ans2 = new Array(1, 6, 11, 16);
+            var Ans3 = new Array(2, 7, 12, 17);
+            var Ans4 = new Array(3, 8, 13, 18);
+            var Ans5 = new Array(4, 9, 14, 19);
+
+
+            //正解のラジオボタンがチェックされているか確認
+            for (i = 0; i < 4; i++) {
+                if (document.radioB.elements[Ans1[i]].checked)
+                    ten++;
+            }
+            for (i = 0; i < 4; i++) {
+                if (document.radioB.elements[Ans2[i]].checked)
+                    ten += 2;
+            }
+            for (i = 0; i < 4; i++) {
+                if (document.radioB.elements[Ans3[i]].checked)
+                    ten += 3;
+            }
+            for (i = 0; i < 4; i++) {
+                if (document.radioB.elements[Ans4[i]].checked)
+                    ten += 4;
+            }
+            for (i = 0; i < 4; i++) {
+                if (document.radioB.elements[Ans5[i]].checked)
+                    ten += 5;
+            }
+
+            var ron = 0; //点を入れる変数
+            var omo = 0;
+            var jisi = 0;
+            var ado = 0;
+
+            //点を配列に入れる
+            var ans1 = new Array(0, 1, 2, 3, 4);
+            var ans2 = new Array(5, 6, 7, 8, 9);
+            var ans3 = new Array(10, 11, 12, 13, 14);
+            var ans4 = new Array(15, 16, 17, 18, 19);
+
+
+            //正解のラジオボタンがチェックされているか確認
+            for (i = 0; i < 5; i++) {
+                if (document.radioB.elements[ans1[i]].checked)
+                    ron = i + 1;
+            }
+            for (i = 0; i < 5; i++) {
+                if (document.radioB.elements[ans2[i]].checked)
+                    omo = i + 1;
+            }
+            for (i = 0; i < 5; i++) {
+                if (document.radioB.elements[ans3[i]].checked)
+                    jisi = i + 1;
+            }
+            for (i = 0; i < 5; i++) {
+                if (document.radioB.elements[ans4[i]].checked)
+                    ado = i + 1;
+            }
+            database.ref("presen").update({
+                logic: ron,
+                interest: omo,
+                confidence: jisi,
+                ad_lib: ado
+            });
+            var ctx = document.getElementById("myRaderChart");
+            var myRadarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ["論理性", "話の面白さ", "自信", "アドリブ力"],
+                    datasets: [{
+                        label: 'Aさん',
+                        data: [ron, omo, jisi, ado],
+                        backgroundColor: 'RGBA(225,95,150, 0.5)',
+                        borderColor: 'RGBA(225,95,150, 1)',
+                        borderWidth: 1,
+                        pointBackgroundColor: 'RGB(46,106,177)'
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: '評価結果'
+                    },
+                    scale: {
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 5,
+                            stepSize: 1,
+                            callback: function (value, index, values) {
+                                return value
+                            }
+                        }
+                    }
+                }
+            });
+
+
+
+            // alert("あなたは"+ten+"点でした！");
+        }
+    </script><br>
+    ​
+    ​
+    <style>
+        .btn-circle-flat {
+            display: inline-block;
+            text-decoration: none;
+            background: #87befd;
+            color: #FFF;
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            transition: .4s;
+        }
+
+        ​ .btn-circle-flat:hover {
+            background: #668ad8;
+        }
+    </style>​
+    ​
+    <center>
+        <input href="#" class="btn-circle-flat" onclick="location.href='../index.html'" value="トップページ">
+    </center>
+
+    ​
+</body>
+
+</html>
